@@ -1,0 +1,21 @@
+sudo apt-get update
+sudo apt-get install mysql-server
+sudo mysql_secure_installation
+sudo systemctl status mysql.service
+sudo mysqladmin -u root -p version
+mysql -u root -p
+
+
+sudo /etc/init.d/mysql stop
+
+sudo mysql_safe --skip-grant-tables & 
+         or
+sudo mkdir -p /var/run/mysqld
+sudo chown mysql:mysql /var/run/mysqld
+sudo mysql_safe --skip-grant-tables &
+
+mysql -u root
+use mysql;
+update user set authentication_string = PASSWORD('iiitkota') where User = 'root';
+flush privileges;
+quit
