@@ -1,0 +1,32 @@
+create database bdb;
+use bdb;
+create table book(book_id int ,title varchar(20),publisher_name varchar(20),publishing_year char(4),primary key(book_id));
+create table book_authors(book_id int ,author_name varchar(30),primary key(book_id));
+create table publisher(name varchar(30),address varchar(50),phone varchar(12));
+create table book_copies(book_id int ,branch_id int,no_of_copies int,primary key(book_id));
+create table book_lending(book_id int ,branch_id int,card_no varchar(10),date_out DATETIME, due_date DATETIME,primary key(book_id));
+create table library_branch(branch_id int,branch_name varchar(20),address varchar(50));
+
+
+insert into book(book_id,title,publisher_name,publishing_year)values(1,"maths","abs","2017"),(2,"science","sdf","2018"),(3,"english","sdf","2019"),(4,"sst","abs","2009");
+insert into book_authors(book_id,author_name)values(1,"rd sharma"),(2,"rs agarwal"),(3,"gbhb ghg"),(4,"feyv grtyh");
+insert into publisher(name,address,phone)values("abs","ncuigh fjeotih43 h 54h3j ","23454655"),("sdf","gjor 546 4 654 6gfjeihjg 6",'8578589434');
+insert into book_copies(book_id,branch_id,no_of_copies)values(1,324,4554),(2,343,5456),(3,324,74967),(4,343,57457);
+insert into book_lending(book_id,branch_id,card_no,date_out,due_date)values(1,324,123456789,now(),"2019-12-23"),(2,343,234567890,now(),'2018-12-12'),(3,324,356464364,now(),"2003-4-5"),(4,344,343536367,now(),'2005-3-3');
+insert into library_branch(branch_id,branch_name,address)values(324,'vfhg rtgrg ggr','gf5465gg 5tr gy 6'),(343,'vgtg rgre gre','t5g5yg6y6 h h6'),(343,'trrggh,ferg,g 5646','f5f5 t5t 5g'),(324,'b544g5  6g6t h6','f5 5g 5y');
+
+select * from book;
+select * from book_authors;
+select * from publisher;
+select * from book_copies;
+select * from book_lending;
+select * from library_branch;
+
+
+select book.book_id,book.title,book.publisher_name,book_authors.author_name,book_copies.no_of_copies,library_branch.branch_id,library_branch.branch_name
+from book natural join book_authors natural join publisher natural join book_copies natural join book_lending natural join 
+on book.book_id = book_authors.book_id , book.book_id = book_copies.book_id, book_copies.branch_id=library_branch.branch_id;
+
+
+ 
+
